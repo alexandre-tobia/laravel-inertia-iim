@@ -16,10 +16,12 @@ class BlogController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
+    public function toggle($id) {
+        $post = Post::findOrFail($id);
 
-        Post::create($request->all());
+        $post->published = !$post->published;;
 
-        return redirect()->back();
+        $post->save();
     }
+
 }

@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
 
     Route::post('/blog', [\App\Http\Controllers\BlogController::class, 'store'])->name('blog.store');
+    Route::post('/blog/{id}/toggle', [\App\Http\Controllers\BlogController::class, 'toggle'])->name('blog.toggle');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
