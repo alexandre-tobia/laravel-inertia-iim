@@ -15,4 +15,11 @@ class BlogController extends Controller
             'posts'     => Post::all()
         ]);
     }
+
+    public function store(Request $request) {
+
+        Post::create($request->all());
+
+        return redirect()->back();
+    }
 }

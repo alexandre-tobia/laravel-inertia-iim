@@ -1,15 +1,27 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+import {Inertia} from "@inertiajs/inertia";
 
 defineProps({
     pageTitle: String,
     posts: Array
 });
 
+const maFonction = () => {
+    Inertia.post(route('blog.store'), {
+        'name' : 'Mon titre',
+        'content' : 'Mon titre',
+        'slug' : 'mon-titresdsd'
+    });
+}
+
 </script>
 
 <template>
+
+    <button @click="maFonction" >Cliquer ici !</button>
+
     <Head :title="pageTitle" />
 
     <AuthenticatedLayout>
