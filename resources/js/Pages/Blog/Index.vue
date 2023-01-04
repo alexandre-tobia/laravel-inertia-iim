@@ -2,32 +2,37 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import {Inertia} from "@inertiajs/inertia";
+import { useForm } from '@inertiajs/inertia-vue3'
 
-defineProps({
+const props = defineProps({
     pageTitle: String,
     posts: Array
 });
 
-const toggle = (id) => {
-    Inertia.post(route('blog.toggle', {id: id}));
-}
 
+console.log(props.pageTitle);
+
+const form = useForm({
+    firstname: null,
+})
 </script>
-
 <template>
-
-
     <Head :title="pageTitle" />
-
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{  pageTitle }}</h2>
         </template>
 
         <div class="py-12">
-
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <form @submit.prevent="form.post(route('user.create'))">
+                    <!-- email -->
+                    <input type="text" v-model="form.firstname">
+                    <div v-if="form.errors.firstname">{{ form.errors.firstname }}</div>
 
+                    <!-- submit -->
+                    <button type="submit" :disabled="form.processing">Envoyer</button>
+                </form>
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <table class="min-w-full divide-y divide-gray-200">
@@ -69,7 +74,7 @@ const toggle = (id) => {
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 <!-- Publié: bg-indigo-600 | Non publié: bg-gray-200 -->
-                                <button @click="toggle(post.id)" type="button" v-bind:class="[post.published ? 'bg-indigo-600' : 'bg-gray-200']"  class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-pressed="false">
+                                <button type="button" v-bind:class="[post.published ? 'bg-indigo-600' : 'bg-gray-200']"  class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-pressed="false">
                                     <span class="sr-only">Use setting</span>
                                     <!-- Publié: "translate-x-5", Non publié: "translate-x-0" -->
                                     <span aria-hidden="true" v-bind:class="[post.published ? 'translate-x-5' : 'translate-x-0']"  class="pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>

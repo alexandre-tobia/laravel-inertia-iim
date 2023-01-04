@@ -36,6 +36,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/blog', [\App\Http\Controllers\BlogController::class, 'store'])->name('blog.store');
     Route::post('/blog/{id}/toggle', [\App\Http\Controllers\BlogController::class, 'toggle'])->name('blog.toggle');
 
+    Route::post('/users', function(\Illuminate\Http\Request $request) {
+        $request->validate([
+           'firstname' => 'required'
+        ]);
+    })->name('user.create');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
