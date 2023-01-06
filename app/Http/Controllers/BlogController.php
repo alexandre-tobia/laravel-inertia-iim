@@ -54,6 +54,13 @@ class BlogController extends Controller
         return redirect()->route('blog.index');
     }
 
+    public function delete($slug) {
+        $post = Post::where('slug', $slug)->firstOrFail();
+        $post->delete();
+
+        return redirect()->back();
+    }
+
     public function create()
     {
         return Inertia::render("Blog/Create");

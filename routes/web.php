@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/blog/{slug}', [\App\Http\Controllers\BlogController::class, 'update'])->name('blog.update');
 
+    Route::delete('/blog/{slug}', [\App\Http\Controllers\BlogController::class, 'delete'])->name('blog.delete');
+
     Route::get('/blog/{slug}/edit', [\App\Http\Controllers\BlogController::class, 'edit'])->name('blog.edit');
 
     Route::post('/blog/{id}/toggle', [\App\Http\Controllers\BlogController::class, 'toggle'])->name('blog.toggle');
