@@ -16,6 +16,14 @@ class BlogController extends Controller
         ]);
     }
 
+    public function edit($slug) {
+        $post = Post::where('slug', $slug)->firstOrFail();
+
+        return Inertia::render("Blog/Edit", [
+            'post' => $post
+        ]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([

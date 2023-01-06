@@ -36,6 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/blog/create', [\App\Http\Controllers\BlogController::class, 'create'])->name('blog.create');
 
     Route::post('/blog', [\App\Http\Controllers\BlogController::class, 'store'])->name('blog.store');
+
+    Route::get('/blog/{slug}/edit', [\App\Http\Controllers\BlogController::class, 'edit'])->name('blog.edit');
+
     Route::post('/blog/{id}/toggle', [\App\Http\Controllers\BlogController::class, 'toggle'])->name('blog.toggle');
 
     Route::post('/users', function(\Illuminate\Http\Request $request) {

@@ -71,7 +71,7 @@ const toggle = (id) => {
                                 </button>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Editer</a>
+                                <Link :href="route('blog.edit', {slug: post.slug})" class="text-indigo-600 hover:text-indigo-900">Editer</Link>
                                 <a href="#" class="ml-4 text-indigo-600 hover:text-indigo-900">Supprimer</a>
                             </td>
                         </tr>
