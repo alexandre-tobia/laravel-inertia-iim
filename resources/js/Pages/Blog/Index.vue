@@ -3,6 +3,11 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import {Inertia} from "@inertiajs/inertia";
 
+defineProps({
+    'posts' : Array,
+    'pageTitle': String
+})
+
 const toggle = (id) => {
     Inertia.post(route('blog.toggle', id));
 }

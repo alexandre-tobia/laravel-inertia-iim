@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
 
+    Route::get('/blog/create', [\App\Http\Controllers\BlogController::class, 'create'])->name('blog.create');
+
     Route::post('/blog', [\App\Http\Controllers\BlogController::class, 'store'])->name('blog.store');
     Route::post('/blog/{id}/toggle', [\App\Http\Controllers\BlogController::class, 'toggle'])->name('blog.toggle');
 

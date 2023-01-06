@@ -16,6 +16,10 @@ class BlogController extends Controller
         ]);
     }
 
+    public function create() {
+        return Inertia::render("Blog/Create");
+    }
+
     public function toggle($id) {
         $post = Post::findOrFail($id);
 
