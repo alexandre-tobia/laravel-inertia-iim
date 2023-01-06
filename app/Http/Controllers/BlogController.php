@@ -16,11 +16,27 @@ class BlogController extends Controller
         ]);
     }
 
-    public function create() {
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name'      => 'required',
+            'slug'      => 'required|unique:posts',
+            'content'   => 'required',
+            'published' => 'required'
+        ]);
+
+        Post::create($request->only(['name', 'slug', 'content', 'published']));
+
+        return redirect()->route('blog.index');
+    }
+
+    public function create()
+    {
         return Inertia::render("Blog/Create");
     }
 
-    public function toggle($id) {
+    public function toggle($id)
+    {
         $post = Post::findOrFail($id);
 
         $post->published = !$post->published;;

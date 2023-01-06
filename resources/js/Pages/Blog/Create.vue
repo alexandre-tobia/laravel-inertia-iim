@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/inertia-vue3';
-import { useForm } from '@inertiajs/inertia-vue3'
+import {Head} from '@inertiajs/inertia-vue3';
+import {useForm} from '@inertiajs/inertia-vue3'
 
 const form = useForm({
     name: null,
@@ -13,7 +13,7 @@ const form = useForm({
 </script>
 
 <template>
-    <Head title="Ajouter un article" />
+    <Head title="Ajouter un article"/>
 
     <AuthenticatedLayout>
         <template #header>
@@ -24,7 +24,7 @@ const form = useForm({
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6">
-                        <form class="flex flex-col gap-4" @submit.prevent="form.post('/login')">
+                        <form class="flex flex-col gap-4" @submit.prevent="form.post(route('blog.store'))">
                             <!-- email -->
                             <input placeholder="Titre" type="text" v-model="form.name">
                             <div v-if="form.errors.name">{{ form.errors.name }}</div>
@@ -40,7 +40,9 @@ const form = useForm({
                                 <input type="checkbox" v-model="form.published"> Publié ?
                             </div>
                             <!-- submit -->
-                            <button type="submit" :disabled="form.processing">Sauvegarder</button>
+                            <button class="py-2 px-4 bg-green-400 text-white rounded" type="submit"
+                                    :disabled="form.processing">Sauvegarder
+                            </button>
                         </form>
                     </div>
                 </div>
