@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import { Head, Link } from '@inertiajs/inertia-vue3';
 import {Inertia} from "@inertiajs/inertia";
 
 defineProps({
@@ -16,7 +16,10 @@ const toggle = (id) => {
     <Head :title="pageTitle" />
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{  pageTitle }}</h2>
+            <div class="flex items-center justify-between">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{  pageTitle }}</h2>
+                <Link class="text-white py-2 px-4 bg-green-500 rounded" :href="route('blog.create')">Ajouter un article</Link>
+            </div>
         </template>
 
         <div class="py-12">
