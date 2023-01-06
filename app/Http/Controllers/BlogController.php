@@ -24,6 +24,22 @@ class BlogController extends Controller
         ]);
     }
 
+    public function update(Request $request, $slug)
+    {
+        $post = Post::where('slug', $slug)->firstOrFail();
+
+        $request->validate([
+            'name'      => 'required',
+            'slug'      => 'required|unique:posts,slug,' . $post->id,
+            'content'   => 'required',
+            'published' => 'required'
+        ]);
+
+        $post->update($request->only(['name', 'slug', 'content', 'published']));
+
+        return redirect()->route('blog.index');
+    }
+
     public function store(Request $request)
     {
         $request->validate([

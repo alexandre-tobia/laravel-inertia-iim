@@ -28,7 +28,7 @@ const form = useForm({
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6">
-                        <form class="flex flex-col gap-4" @submit.prevent="form.post(route('blog.store'))">
+                        <form class="flex flex-col gap-4" @submit.prevent="form.put(route('blog.update', {slug: post.slug}))">
                             <!-- email -->
                             <input placeholder="Titre" type="text" v-model="form.name">
                             <div v-if="form.errors.name">{{ form.errors.name }}</div>
@@ -45,7 +45,7 @@ const form = useForm({
                             </div>
                             <!-- submit -->
                             <button class="py-2 px-4 bg-green-400 text-white rounded" type="submit"
-                                    :disabled="form.processing">Sauvegarder
+                                    :disabled="form.processing">Modifier
                             </button>
                         </form>
                     </div>
